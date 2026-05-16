@@ -1,11 +1,13 @@
-﻿# ProjectHub — Project Management App
+# ProjectHub — Project Management App
 
 A full-stack web application where users can create projects, assign tasks, and track progress with role-based access control (Admin/Member).
 
 ## Live Demo
-[https://project-hub-beryl-one.vercel.app/]
+
+https://project-hub-beryl-one.vercel.app/
 
 ## Features
+
 - Authentication (Signup/Login with JWT)
 - Project & team management (create projects, add/remove members)
 - Task creation, assignment & status tracking (Todo / In Progress / Done)
@@ -13,46 +15,77 @@ A full-stack web application where users can create projects, assign tasks, and 
 - Role-based access control (Admin / Member)
 
 ## Tech Stack
-- **Frontend:** React (Vite), React Router, Axios
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (Mongoose)
-- **Auth:** JWT + bcryptjs
-- **Deployment:** Railway
+
+- Frontend: React (Vite), React Router, Axios
+- Backend: Node.js, Express.js
+- Database: MongoDB (Mongoose)
+- Auth: JWT + bcryptjs
+- Deployment:
+  - Frontend → Vercel
+  - Backend → Railway
+  - Database → MongoDB Atlas
+
+## Environment Variables
+
+Backend (.env):
+PORT=5000  
+MONGO_URI=your_mongodb_connection_string  
+JWT_SECRET=your_secret_key  
+
+Frontend (.env):
+VITE_API_URL=https://your-backend-url  
 
 ## Getting Started
 
 ### Backend Setup
-cd backend && npm install
-Create .env with PORT, MONGO_URI, JWT_SECRET
-npm run dev
+
+cd backend  
+npm install  
+
+Create .env file with:
+PORT, MONGO_URI, JWT_SECRET  
+
+npm run dev  
 
 ### Frontend Setup
-cd frontend && npm install
-npm run dev
-Visit http://localhost:5174
+
+cd frontend  
+npm install  
+npm run dev  
+
+Visit http://localhost:5174  
 
 ## API Endpoints
 
 ### Auth
-POST /api/auth/register
-POST /api/auth/login
+
+POST /api/auth/register  
+POST /api/auth/login  
 
 ### Projects
-GET    /api/projects
-POST   /api/projects
-PUT    /api/projects/:id/members
-DELETE /api/projects/:id/members
-DELETE /api/projects/:id
+
+GET /api/projects  
+POST /api/projects  
+PUT /api/projects/:id/members  
+DELETE /api/projects/:id/members  
+DELETE /api/projects/:id  
 
 ### Tasks
-GET    /api/tasks/:projectId
-POST   /api/tasks
-PUT    /api/tasks/:id
-DELETE /api/tasks/:id
+
+GET /api/tasks/:projectId  
+POST /api/tasks  
+PUT /api/tasks/:id  
+DELETE /api/tasks/:id  
 
 ## Roles
-- Admin: create projects, add/remove members, create/assign/delete tasks
-- Member: view assigned projects, update status of their own tasks
+
+- Admin: create projects, add/remove members, create/assign/delete tasks  
+- Member: view assigned projects, update status of their own tasks  
 
 ## Deployment
-Deployed on Railway with separate frontend and backend services.
+
+Deployed on Railway (backend) and Vercel (frontend), with MongoDB Atlas as database.
+
+## Author
+
+Ali Ashraf

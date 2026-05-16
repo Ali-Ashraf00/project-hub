@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://your-vercel-app.vercel.app',
+  origin: 'https://project-hub-git-main-ali-ashraf.vercel.app',
   credentials: true
 }));
 app.use(express.json());

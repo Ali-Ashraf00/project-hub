@@ -3,7 +3,7 @@
 A full-stack web application where users can create projects, assign tasks, and track progress with role-based access control (Admin/Member).
 
 ## Live Demo
-[https://project-hub-2-production.up.railway.app/]
+[https://project-hub-beryl-one.vercel.app/]
 
 ## Features
 - Authentication (Signup/Login with JWT)

@@ -17,7 +17,7 @@ export default function Register() {
     if (!form.name || !form.email || !form.password) return showToast('Please fill all fields', 'error');
     setLoading(true);
     try {
-      const res = await api.post('/auth/register', form);
+      const res = await api.post('/api/auth/register', form);
       login(res.data.token, res.data.user);
       navigate('/');
     } catch (err) {

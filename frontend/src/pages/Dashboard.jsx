@@ -13,10 +13,10 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const projects = await api.get('/projects');
+        const projects = await api.get('/api/projects');
         let tasks = 0, done = 0, overdue = 0;
         for (const p of projects.data) {
-          const t = await api.get(`/tasks/${p._id}`);
+          const t = await api.get(`/api/tasks/${p._id}`);
           tasks += t.data.length;
           done += t.data.filter(t => t.status === 'Done').length;
           overdue += t.data.filter(t => t.dueDate && new Date(t.dueDate) < new Date() && t.status !== 'Done').length;

@@ -17,7 +17,7 @@ export default function Projects() {
   const { toast, showToast, hideToast } = useToast();
 
   const fetchProjects = async () => {
-    const res = await api.get('/projects');
+    const res = await api.get('/api/projects');
     setProjects(res.data);
   };
 
@@ -27,28 +27,28 @@ export default function Projects() {
     if (!name.trim()) return showToast('Enter a project name', 'error');
     setLoading(true);
     try {
-      await api.post('/projects', { name });
+      await api.post('/api/projects', { name });
       setName(''); fetchProjects(); showToast('Project created!');
     } catch { showToast('Failed to create project', 'error'); }
     finally { setLoading(false); }
   };
 
   const deleteProject = async (id) => {
-    try { await api.delete(`/projects/${id}`); fetchProjects(); showToast('Project deleted', 'info'); }
+    try { await api.delete(`/api/projects/${id}`); fetchProjects(); showToast('Project deleted', 'info'); }
     catch { showToast('Failed to delete', 'error'); }
   };
 
   const addMember = async (projectId) => {
     if (!memberEmail.trim()) return showToast('Enter member email', 'error');
     try {
-      await api.put(`/projects/${projectId}/members`, { email: memberEmail });
+      await api.put(`/api/projects/${projectId}/members`, { email: memberEmail });
       showToast('Member added!'); setMemberEmail(''); setAddingMemberTo(null); fetchProjects();
     } catch (err) { showToast(err.response?.data?.msg || 'Failed to add member', 'error'); }
   };
 
   const removeMember = async (projectId, userId) => {
     try {
-      await api.delete(`/projects/${projectId}/members`, { data: { userId } });
+      await api.delete(`/api/projects/${projectId}/members`, { data: { userId } });
       showToast('Member removed', 'info'); fetchProjects();
     } catch (err) { showToast(err.response?.data?.msg || 'Failed to remove member', 'error'); }
   };

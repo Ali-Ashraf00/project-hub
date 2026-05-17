@@ -20,13 +20,13 @@ export default function Tasks() {
   const [showForm, setShowForm] = useState(false);
 
   const fetchTasks = async () => {
-    const res = await api.get(`/tasks/${id}`);
+    const res = await api.get(`/api/tasks/${id}`);
     setTasks(res.data);
   };
 
   useEffect(() => {
     fetchTasks();
-    if (user.role === 'Admin') api.get(`/tasks/members/${id}`).then(r => setMembers(r.data));
+    if (user.role === 'Admin') api.get(`/api/tasks/members/${id}`).then(r => setMembers(r.data));
   }, [id]);
 
   const createTask = async () => {
@@ -34,7 +34,7 @@ export default function Tasks() {
     if (!form.assignedTo) return showToast('Please assign this task', 'error');
     setLoading(true);
     try {
-      await api.post('/tasks', { ...form, project: id });
+      await api.post('/api/tasks', { ...form, project: id });
       setForm({ title: '', description: '', status: 'Todo', dueDate: '', assignedTo: '' });
       setShowForm(false);
       fetchTasks();
@@ -44,17 +44,17 @@ export default function Tasks() {
   };
 
   const updateStatus = async (taskId, status) => {
-    await api.put(`/tasks/${taskId}`, { status });
+    await api.put(`/api/tasks/${taskId}`, { status });
     fetchTasks(); showToast('Status updated!', 'info');
   };
 
   const reassignTask = async (taskId, assignedTo) => {
-    await api.put(`/tasks/${taskId}`, { assignedTo });
+    await api.put(`/api/tasks/${taskId}`, { assignedTo });
     fetchTasks(); showToast('Task reassigned!', 'info');
   };
 
   const deleteTask = async (taskId) => {
-    await api.delete(`/tasks/${taskId}`);
+    await api.delete(`/api/tasks/${taskId}`);
     fetchTasks(); showToast('Task deleted', 'info');
   };
 
